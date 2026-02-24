@@ -1,41 +1,52 @@
 # openclaw-skill-m365-task-manager
 
-OpenClaw skill for Microsoft 365 task management with real Microsoft Graph CRUD for Microsoft To Do.
+Production-ready OpenClaw skill for **Microsoft 365 task operations** using **Microsoft Graph API** (Microsoft To Do).
 
-## Author
-Abdelkrim BOUJRAF
+## What this project is
 
-## Company
-ALT-F1 SRL
-https://www.alt-f1.be
+This repository provides a practical skill package to create, read, update, and delete Microsoft To Do tasks from OpenClaw workflows.
 
-## License
-MIT
+If this is your first time reading this repo, start with:
+1. **Prerequisites**
+2. **Quick Start**
+3. **Command Reference**
 
-## Features
+---
 
-- Real Graph API CRUD for Microsoft To Do tasks
-- Delegated Device Code authentication with token cache reuse
-- Task naming formatter helper script
-- Lightweight operational playbook
+## Core capabilities
 
-## Requirements
+- Microsoft Graph CRUD for Microsoft To Do tasks
+- Device Code delegated authentication (first login interactive, then cached)
+- Deterministic task naming helper
+- Lightweight operational playbook for consistent usage
+
+---
+
+## Prerequisites
 
 - Node.js 18+
-- Entra app registration (public client)
-- Graph delegated permissions:
+- Microsoft Entra app registration configured as **public client**
+- Microsoft Graph delegated permissions:
   - `Tasks.ReadWrite`
   - `User.Read`
   - `offline_access`
 
-## Environment
+---
+
+## Configuration
+
+Create environment variables:
 
 ```bash
 M365_TENANT_ID=your-tenant-id-or-common
 M365_CLIENT_ID=your-public-client-app-id
-# optional
+# optional override
 M365_TOKEN_CACHE_PATH=/home/user/.cache/openclaw/m365-task-manager-token.json
 ```
+
+> First execution opens Device Code flow. Sign in once, token is cached for reuse.
+
+---
 
 ## Install
 
@@ -43,29 +54,49 @@ M365_TOKEN_CACHE_PATH=/home/user/.cache/openclaw/m365-task-manager-token.json
 npm install
 ```
 
-## Usage
+---
+
+## Quick Start
 
 ```bash
-# verify auth and user
+# 1) Validate auth + user profile
 npm run todo -- info
 
-# list lists
+# 2) List available Microsoft To Do lists
 npm run todo -- lists
 
-# list tasks
+# 3) Create a task in default Tasks list
+npm run todo -- tasks:create --list-name "Tasks" --title "2026-02-27-send-2-dvd-to-robert-abdelkrim" --due 2026-02-27
+```
+
+---
+
+## Command Reference
+
+```bash
+# Connection + profile
+npm run todo -- info
+
+# Lists
+npm run todo -- lists
+
+# Read tasks
 npm run todo -- tasks:list --list-name "Tasks"
+npm run todo -- tasks:list --list-id <LIST_ID>
 
-# create
-npm run todo -- tasks:create --list-name "Tasks" --title "Burn 2 DVDs" --due 2026-02-28
+# Create task
+npm run todo -- tasks:create --list-name "Tasks" --title "Task title" [--body "Notes"] [--due YYYY-MM-DD]
 
-# update
-npm run todo -- tasks:update --list-name "Tasks" --task-id <TASK_ID> --status inProgress
+# Update task
+npm run todo -- tasks:update --list-name "Tasks" --task-id <TASK_ID> [--title "..."] [--body "..."] [--status notStarted|inProgress|completed|waitingOnOthers|deferred] [--due YYYY-MM-DD]
 
-# delete
+# Delete task
 npm run todo -- tasks:delete --list-name "Tasks" --task-id <TASK_ID>
 ```
 
-## Included files
+---
+
+## Project structure
 
 ```text
 skills/m365-task-manager/
@@ -75,3 +106,43 @@ skills/m365-task-manager/
     ├── m365-todo.mjs
     └── format-task-name.sh
 ```
+
+---
+
+## Operational convention
+
+Recommended task title pattern:
+
+`YYYY-MM-DD-short-action-owner`
+
+Examples:
+- `2026-02-24-follow-up-abdelkrim`
+- `2026-02-27-send-2-dvd-to-robert-abdelkrim`
+
+---
+
+## Troubleshooting
+
+### `invalid_grant`
+Usually app or tenant mismatch. Verify `M365_TENANT_ID` and `M365_CLIENT_ID` point to the correct app.
+
+### Device login shows wrong app name
+Your service env is using another client ID. Update env, restart service, and retry.
+
+### No lists returned / request fails
+Confirm delegated permissions are granted and admin consent applied.
+
+---
+
+## License
+
+MIT (see `LICENSE`).
+
+---
+
+## Credits
+
+Created by **Abdelkrim BOUJRAF**
+
+Company: **ALT-F1 SRL**  
+Website: https://www.alt-f1.be
