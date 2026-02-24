@@ -1,6 +1,9 @@
 ---
 name: m365-task-manager
-description: Manage lightweight Microsoft 365 task workflows with Microsoft To Do and Planner. Use when a user needs to quickly create, assign, track, and follow up operational tasks in M365 with clear owners, due dates, status, and daily reminders.
+description: "Manage lightweight Microsoft 365 task workflows with Microsoft To Do and Planner. Use when a user needs to quickly create, assign, track, and follow up operational tasks in M365 with clear owners, due dates, status, and daily reminders."
+homepage: https://github.com/ALT-F1-OpenClaw/openclaw-skill-m365-task-manager
+metadata:
+  {"openclaw": {"emoji": "✅", "requires": {"env": ["M365_TENANT_ID", "M365_CLIENT_ID"]}, "primaryEnv": "M365_TENANT_ID"}}
 ---
 
 # M365 Task Manager
@@ -44,7 +47,7 @@ node skills/m365-task-manager/scripts/m365-todo.mjs lists
 node skills/m365-task-manager/scripts/m365-todo.mjs tasks:list --list-name "Tasks"
 
 # create task
-node skills/m365-task-manager/scripts/m365-todo.mjs tasks:create --list-name "Tasks" --title "Burn 2 DVDs" --due 2026-02-28
+node skills/m365-task-manager/scripts/m365-todo.mjs tasks:create --list-name "Tasks" --title "2026-03-01-submit-weekly-status-report" --due 2026-03-01
 
 # update task
 node skills/m365-task-manager/scripts/m365-todo.mjs tasks:update --list-name "Tasks" --task-id <TASK_ID> --status inProgress
