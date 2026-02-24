@@ -66,7 +66,7 @@ npm run todo -- info
 npm run todo -- lists
 
 # 3) Create a task in default Tasks list
-npm run todo -- tasks:create --list-name "Tasks" --title "2026-02-27-send-2-dvd-to-robert-abdelkrim" --due 2026-02-27
+npm run todo -- tasks:create --list-name "Tasks" --title "2026-03-01-submit-weekly-status-report" --due 2026-03-01
 ```
 
 ---
@@ -116,8 +116,8 @@ Recommended task title pattern:
 `YYYY-MM-DD-short-action-owner`
 
 Examples:
-- `2026-02-24-follow-up-abdelkrim`
-- `2026-02-27-send-2-dvd-to-robert-abdelkrim`
+- `2026-03-01-review-monthly-budget`
+- `2026-03-05-prepare-quarterly-planning-notes`
 
 ---
 
