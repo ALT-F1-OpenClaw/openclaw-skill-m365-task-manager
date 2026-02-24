@@ -161,7 +161,7 @@ async function resolveListId(args, token) {
   if (args['list-id']) return args['list-id'];
   if (!args['list-name']) throw new Error('Provide --list-id or --list-name');
 
-  const data = await graph('GET', '/me/todo/lists?$select=id,displayName', token);
+  const data = await graph('GET', '/me/todo/lists', token);
   const found = data.value.find((x) => x.displayName.toLowerCase() === String(args['list-name']).toLowerCase());
   if (!found) throw new Error(`List not found: ${args['list-name']}`);
   return found.id;
@@ -177,7 +177,7 @@ async function cmdInfo(token) {
 }
 
 async function cmdLists(token) {
-  const data = await graph('GET', '/me/todo/lists?$select=id,displayName,isOwner', token);
+  const data = await graph('GET', '/me/todo/lists', token);
   console.log(JSON.stringify(data.value, null, 2));
 }
 
