@@ -2,6 +2,15 @@
 
 Production-ready OpenClaw skill for **Microsoft 365 task operations** using **Microsoft Graph API** (Microsoft To Do).
 
+[![ClawHub](https://img.shields.io/badge/ClawHub-openclaw--skill--m365--task--manager--by--altf1be-orange)](https://clawhub.ai/skills/openclaw-skill-m365-task-manager-by-altf1be)
+[![Security](https://img.shields.io/badge/Security_Scan-Benign-green)](https://clawhub.ai/skills/openclaw-skill-m365-task-manager-by-altf1be)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Install via ClawHub:**
+```bash
+clawhub install openclaw-skill-m365-task-manager-by-altf1be
+```
+
 ## What this project is
 
 This repository provides a practical skill package to create, read, update, and delete Microsoft To Do tasks from OpenClaw workflows.
