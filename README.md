@@ -122,11 +122,11 @@ skills/m365-task-manager/
 
 Recommended task title pattern:
 
-`YYYY-MM-DD-short-action-owner`
+`<project>-<date>-<person>-<action>`
 
 Examples:
-- `2026-03-01-review-monthly-budget`
-- `2026-03-05-prepare-quarterly-planning-notes`
+- `finance-2026-03-01-abdelkrim-review-monthly-budget`
+- `ops-2026-03-05-morad-prepare-quarterly-planning-notes`
 
 ---
 

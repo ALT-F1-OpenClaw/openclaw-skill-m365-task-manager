@@ -35,8 +35,8 @@
 ## Naming convention
 
 Pattern:
-- `YYYY-MM-DD-short-action-owner`
+- `<project>-<date>-<person>-<action>`
 
 Examples:
-- `2026-02-24-burn-2-dvd-send-robert`
-- `2026-02-24-review-m365-license-assignment`
+- `ops-2026-02-24-abdelkrim-burn-2-dvd-send-robert`
+- `security-2026-02-24-morad-review-m365-license-assignment`

@@ -58,7 +58,7 @@ node skills/m365-task-manager/scripts/m365-todo.mjs tasks:delete --list-name "Ta
 
 ## Operating standard
 
-- Task title pattern: `YYYY-MM-DD-short-action-owner`
+- Task title pattern: `<project>-<date>-<person>-<action>`
 - Required fields: title, owner, due date, status
 - Status values: `Open`, `In Progress`, `Blocked`, `Done`
 
