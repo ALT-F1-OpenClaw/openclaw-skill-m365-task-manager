@@ -1,6 +1,6 @@
 ---
 name: m365-task-manager
-description: Manage simple Microsoft 365 tasks using Microsoft To Do and Planner patterns. Use when creating, assigning, tracking, or reminding operational tasks in M365, including daily follow-ups, owner assignment, due dates, and status updates.
+description: Manage lightweight Microsoft 365 task workflows with Microsoft To Do and Planner. Use when a user needs to quickly create, assign, track, and follow up operational tasks in M365 with clear owners, due dates, status, and daily reminders.
 ---
 
 # M365 Task Manager
