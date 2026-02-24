@@ -5,37 +5,68 @@ description: Manage lightweight Microsoft 365 task workflows with Microsoft To D
 
 # M365 Task Manager
 
-Use this skill to run simple task management workflows in Microsoft 365 with low friction.
+Use this skill to perform real Microsoft Graph CRUD operations for Microsoft To Do tasks.
 
-## Default workflow
+## Setup
 
-1. Normalize the task title using this pattern: `YYYY-MM-DD short-action-owner`.
-2. Capture owner, due date, and status.
-3. Store task in Microsoft Planner for team tasks, Microsoft To Do for personal tasks.
-4. Add daily reminder if the task is operationally critical.
-5. Keep updates short and executive-friendly.
+1. Create an Entra app registration for delegated sign-in.
+2. Add Microsoft Graph delegated permissions:
+   - `Tasks.ReadWrite`
+   - `User.Read`
+   - `offline_access`
+3. Configure environment variables:
 
-## Task fields
+```bash
+M365_TENANT_ID=your-tenant-id-or-common
+M365_CLIENT_ID=your-public-client-app-id
+# optional
+M365_TOKEN_CACHE_PATH=/home/user/.cache/openclaw/m365-task-manager-token.json
+```
 
-- Title
-- Owner
-- Due date
-- Status (`Open`, `In Progress`, `Blocked`, `Done`)
-- Evidence link (optional)
+4. Install dependencies at repo root:
 
-## Naming convention
+```bash
+npm install
+```
 
-- `2026-02-24-burn-2-dvd-send-robert`
-- `2026-02-24-review-m365-license-assignment`
+On first run, the script uses Device Code login and caches tokens for reuse.
+
+## Commands
+
+```bash
+# profile connection
+node skills/m365-task-manager/scripts/m365-todo.mjs info
+
+# list Microsoft To Do lists
+node skills/m365-task-manager/scripts/m365-todo.mjs lists
+
+# list tasks
+node skills/m365-task-manager/scripts/m365-todo.mjs tasks:list --list-name "Tasks"
+
+# create task
+node skills/m365-task-manager/scripts/m365-todo.mjs tasks:create --list-name "Tasks" --title "Burn 2 DVDs" --due 2026-02-28
+
+# update task
+node skills/m365-task-manager/scripts/m365-todo.mjs tasks:update --list-name "Tasks" --task-id <TASK_ID> --status inProgress
+
+# delete task
+node skills/m365-task-manager/scripts/m365-todo.mjs tasks:delete --list-name "Tasks" --task-id <TASK_ID>
+```
+
+## Operating standard
+
+- Task title pattern: `YYYY-MM-DD-short-action-owner`
+- Required fields: title, owner, due date, status
+- Status values: `Open`, `In Progress`, `Blocked`, `Done`
 
 ## References
 
-- Read `references/playbook.md` for implementation playbook.
+- `references/playbook.md` for operating guidance.
 
 ## Scripts
 
-- Use scripts in `scripts/` for deterministic formatting and payload generation.
-
+- `scripts/m365-todo.mjs` for Graph CRUD on Microsoft To Do.
+- `scripts/format-task-name.sh` for deterministic task naming.
 
 ## Author
 

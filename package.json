@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-skill-m365-task-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "todo": "node skills/m365-task-manager/scripts/m365-todo.mjs",
+    "todo:help": "node skills/m365-task-manager/scripts/m365-todo.mjs --help"
+  },
+  "dependencies": {
+    "@azure/msal-node": "^2.10.0"
+  }
+}

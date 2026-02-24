@@ -1,6 +1,6 @@
 # openclaw-skill-m365-task-manager
 
-OpenClaw skill for simple Microsoft 365 task management using Microsoft To Do and Planner patterns.
+OpenClaw skill for Microsoft 365 task management with real Microsoft Graph CRUD for Microsoft To Do.
 
 ## Author
 Abdelkrim BOUJRAF
@@ -12,72 +12,66 @@ https://www.alt-f1.be
 ## License
 MIT
 
-## What this skill does
+## Features
 
-This skill standardizes lightweight task operations in M365:
-- create task records with clear naming
-- assign owner and due date
-- track status using a simple lifecycle
-- support daily operational follow-up reminders
+- Real Graph API CRUD for Microsoft To Do tasks
+- Delegated Device Code authentication with token cache reuse
+- Task naming formatter helper script
+- Lightweight operational playbook
 
-## When to use
+## Requirements
 
-Use this skill when you need fast, consistent task capture for operations work in Microsoft 365:
-- personal tasks in Microsoft To Do
-- team tasks in Microsoft Planner
-- recurring follow-up actions where ownership and due dates must be explicit
+- Node.js 18+
+- Entra app registration (public client)
+- Graph delegated permissions:
+  - `Tasks.ReadWrite`
+  - `User.Read`
+  - `offline_access`
+
+## Environment
+
+```bash
+M365_TENANT_ID=your-tenant-id-or-common
+M365_CLIENT_ID=your-public-client-app-id
+# optional
+M365_TOKEN_CACHE_PATH=/home/user/.cache/openclaw/m365-task-manager-token.json
+```
+
+## Install
+
+```bash
+npm install
+```
+
+## Usage
+
+```bash
+# verify auth and user
+npm run todo -- info
+
+# list lists
+npm run todo -- lists
+
+# list tasks
+npm run todo -- tasks:list --list-name "Tasks"
+
+# create
+npm run todo -- tasks:create --list-name "Tasks" --title "Burn 2 DVDs" --due 2026-02-28
+
+# update
+npm run todo -- tasks:update --list-name "Tasks" --task-id <TASK_ID> --status inProgress
+
+# delete
+npm run todo -- tasks:delete --list-name "Tasks" --task-id <TASK_ID>
+```
 
 ## Included files
 
 ```text
 skills/m365-task-manager/
 ├── SKILL.md
-├── references/
-│   └── playbook.md
+├── references/playbook.md
 └── scripts/
+    ├── m365-todo.mjs
     └── format-task-name.sh
-```
-
-## Naming convention
-
-Pattern:
-- `YYYY-MM-DD-short-action-owner`
-
-Examples:
-- `2026-02-24-burn-2-dvd-send-robert`
-- `2026-02-24-review-m365-license-assignment`
-
-## Task fields standard
-
-- Title
-- Owner
-- Due date
-- Status: Open | In Progress | Blocked | Done
-- Evidence link (optional)
-
-## Quick test
-
-```bash
-./skills/m365-task-manager/scripts/format-task-name.sh 2026-02-24 "Burn 2 DVD Send Robert"
-```
-
-Expected output:
-
-```text
-2026-02-24-burn-2-dvd-send-robert
-```
-
-## Publish workflow
-
-1. Commit changes
-2. Push to GitHub
-3. Publish to ClawHub from repo root
-
-Example:
-
-```bash
-git add .
-git commit -m "docs: update"
-git push
-# then clawhub publish according to your local clawhub auth/setup
 ```

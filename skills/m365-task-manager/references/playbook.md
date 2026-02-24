@@ -1,14 +1,42 @@
 # M365 Task Manager Playbook
 
-## Use Planner when
-- Task involves multiple people
-- Need visible team board
+## Technical execution model
 
-## Use To Do when
-- Task is personal
-- Fast capture and reminders are enough
+- API: Microsoft Graph
+- Auth: delegated Device Code flow
+- Token cache: local file for unattended reuse after first login
 
-## Lightweight governance
-- One owner per task
-- One due date
-- One weekly cleanup
+## CLI command map
+
+- `info` - verify authenticated user and scopes
+- `lists` - list Microsoft To Do lists
+- `tasks:list` - read tasks from list
+- `tasks:create` - create task
+- `tasks:update` - patch task fields
+- `tasks:delete` - remove task
+
+## Functional guidance
+
+### Use Microsoft To Do when
+- Single user personal execution
+- Fast operational capture
+
+### Use Planner when
+- Team board visibility is required
+- Multi-owner orchestration is required
+
+## Status lifecycle
+
+- Open
+- In Progress
+- Blocked
+- Done
+
+## Naming convention
+
+Pattern:
+- `YYYY-MM-DD-short-action-owner`
+
+Examples:
+- `2026-02-24-burn-2-dvd-send-robert`
+- `2026-02-24-review-m365-license-assignment`
