@@ -35,3 +35,12 @@ Use this skill to run simple task management workflows in Microsoft 365 with low
 ## Scripts
 
 - Use scripts in `scripts/` for deterministic formatting and payload generation.
+
+
+## Author
+
+Abdelkrim BOUJRAF - ALT-F1 SRL - https://www.alt-f1.be
+
+## License
+
+MIT
