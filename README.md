@@ -1,4 +1,4 @@
-# m365-task-manager-skill
+# openclaw-skill-m365-task-manager
 
 OpenClaw skill for simple Microsoft 365 task management workflows.
 
