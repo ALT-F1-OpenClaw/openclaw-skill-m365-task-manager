@@ -1,4 +1,4 @@
-# openclaw-skill-m365-task-manager-by-altf1be
+# Openclaw Skill M365 Task Manager
 
 Production-ready OpenClaw skill for **Microsoft 365 task operations** using **Microsoft Graph API** (Microsoft To Do).
 

@@ -1,5 +1,5 @@
 ---
-name: m365-task-manager-by-altf1be
+name: openclaw-skill-m365-task-manager-by-altf1be
 description: "Manage lightweight Microsoft 365 task workflows with Microsoft To Do and Planner. Use when a user needs to quickly create, assign, track, and follow up operational tasks in M365 with clear owners, due dates, status, and daily reminders."
 homepage: https://github.com/ALT-F1-OpenClaw/openclaw-skill-m365-task-manager
 metadata:
