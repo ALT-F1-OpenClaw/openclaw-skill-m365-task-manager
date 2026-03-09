@@ -151,7 +151,7 @@ MIT (see `LICENSE`).
 
 ## Credits
 
-Created by **Abdelkrim BOUJRAF**
+Created by **Abdelkrim BOUJRAF** 🇲🇦
 
-Company: **ALT-F1 SRL**  
+Company: **ALT-F1 SRL** — Brussels, Belgium 🇧🇪  
 Website: https://www.alt-f1.be
