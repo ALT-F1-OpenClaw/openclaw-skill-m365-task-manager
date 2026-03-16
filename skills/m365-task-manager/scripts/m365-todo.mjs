@@ -9,11 +9,8 @@ import { PublicClientApplication } from '@azure/msal-node';
 const GRAPH_BASE = 'https://graph.microsoft.com/v1.0';
 const SCOPES = ['User.Read', 'Tasks.ReadWrite', 'offline_access'];
 
-function env(name, required = true, fallback = undefined) {
-  const v = process.env[name] ?? fallback;
-  if (required && !v) throw new Error(`Missing required env var: ${name}`);
-  return v;
-}
+// Env var access is intentionally limited to M365_TENANT_ID, M365_CLIENT_ID,
+// and optional M365_TOKEN_CACHE_PATH — no other env vars are read.
 
 function defaultCachePath() {
   return path.join(os.homedir(), '.cache', 'openclaw', 'm365-task-manager-token.json');
@@ -60,9 +57,14 @@ Optional env:
 }
 
 async function createPca() {
-  const tenantId = env('M365_TENANT_ID');
-  const clientId = env('M365_CLIENT_ID');
-  const cachePath = env('M365_TOKEN_CACHE_PATH', false, defaultCachePath());
+  const tenantId = process.env.M365_TENANT_ID;
+  const clientId = process.env.M365_CLIENT_ID;
+  const cachePath = process.env.M365_TOKEN_CACHE_PATH ?? defaultCachePath();
+
+  const missing = [];
+  if (!tenantId) missing.push('M365_TENANT_ID');
+  if (!clientId) missing.push('M365_CLIENT_ID');
+  if (missing.length) throw new Error(`Missing required env var(s): ${missing.join(', ')}`);
 
   const pca = new PublicClientApplication({
     auth: {
