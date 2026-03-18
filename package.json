@@ -9,5 +9,6 @@
   },
   "dependencies": {
     "@azure/msal-node": "^2.10.0"
-  }
+  },
+  "author": "Abdelkrim BOUJRAF <clawhub_ai@alt-f1.be> (https://www.alt-f1.be)"
 }
